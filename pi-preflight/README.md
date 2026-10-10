@@ -6,12 +6,7 @@ A [pi](https://pi.dev) extension that runs a **preflight check before the agent 
 2. **Plan.** It proposes a plan. You can approve it, edit it as Markdown, ask for changes, or go back to more questions.
 3. **Execute.** Once you approve, the agent does the work while a live checklist tracks each step.
 
-```
-✈ Preflight · Interview  add input validation and persistence to this todo API
-  Confidence ████████████░░░░░┆░░ 62% / 85%  0 → 62
-  Weakest    Scope 60 · Constraints 75
-  Questions  4 asked · 3 answered · 1 skipped · 1 open decision
-```
+![pi-preflight: an interview round with the confidence tracker, and the live execution checklist](https://raw.githubusercontent.com/pdulapalli/pi-extensions/main/pi-preflight/docs/cover.png)
 
 ## Install
 
@@ -46,7 +41,11 @@ Flag: `--preflight-threshold <n>` sets the confidence needed before planning (de
 
 The agent first looks around your project so it doesn't ask things it could find out itself. Then it asks rounds of 1–4 questions, aimed at whatever it's least sure about. Most questions have concrete options and a **recommended** default. You can always type your own answer or **skip**.
 
+![Interview round: tabbed questions with a recommended option, and the confidence tracker above](https://raw.githubusercontent.com/pdulapalli/pi-extensions/main/pi-preflight/docs/interview.png)
+
 Keys: `←→`/`Tab` switch question, `1-9`/`Enter` choose, `Esc` pause. When you pause, you can go back, skip ahead to the plan, pause and reply in chat, or cancel.
+
+![Submit tab: review all answers before sending them](https://raw.githubusercontent.com/pdulapalli/pi-extensions/main/pi-preflight/docs/answers.png)
 
 While the interview runs, the agent can't change anything. `edit` and `write` are turned off. `bash` only runs commands on a read-only allowlist (`ls`, `cat`, `rg`, `git log`/`diff`/`status`, `npm ls`, …). Any write, redirect, install or git change is blocked. Other tools stay available only if they declare `readOnlyHint`.
 
@@ -71,7 +70,11 @@ The extension then turns these into one confidence number, so the agent can't si
 
 If the agent tries to plan below the threshold, or without asking you anything, you'll be asked whether to go ahead. The dialog explains what's holding the score down.
 
+![Below-threshold dialog: the score breakdown, open decisions, and the assumptions the agent would make for you](https://raw.githubusercontent.com/pdulapalli/pi-extensions/main/pi-preflight/docs/confidence-gate.png)
+
 ### 2. Plan review
+
+![Plan review: action bar above the rendered plan, with steps, verification, assumptions, risks and out-of-scope items](https://raw.githubusercontent.com/pdulapalli/pi-extensions/main/pi-preflight/docs/plan-review.png)
 
 The plan appears in a scrollable view with these actions:
 
@@ -115,7 +118,10 @@ Plain numbered lists work too. A `- [ ]` item counts as a step wherever you type
 
 ### 3. Execute
 
-Your normal tools come back. The agent marks each step as `in_progress`, then `done`, `blocked` or `skipped`. If it finds extra work along the way, it adds a new step instead of quietly doing more. A checklist above the editor and a counter in the footer (`✈ 3/7`) show progress. When every step is finished, the preflight ends and the agent summarizes what it did.
+Your normal tools come back. The agent marks each step as `in_progress`, then `done`, `blocked` or `skipped`. If it finds extra work along the way, it adds a new step instead of quietly doing more. A checklist above the editor and a counter in the footer (`✈ 3/7`) show progress.
+
+![Execution: the agent writes files while the live checklist tracks the current step](https://raw.githubusercontent.com/pdulapalli/pi-extensions/main/pi-preflight/docs/execution.png)
+ When every step is finished, the preflight ends and the agent summarizes what it did.
 
 ### State
 

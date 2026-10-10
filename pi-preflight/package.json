@@ -1,6 +1,6 @@
 {
   "name": "pi-preflight",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pi extension: interview the user until the agent is confident, then plan, review/edit, and execute with a live checklist.",
   "type": "module",
   "license": "MIT",
@@ -24,7 +24,10 @@
   "homepage": "https://github.com/pdulapalli/pi-extensions/tree/main/pi-preflight#readme",
   "bugs": "https://github.com/pdulapalli/pi-extensions/issues",
   "pi": {
-    "extensions": ["./src/index.ts"]
+    "image": "https://raw.githubusercontent.com/pdulapalli/pi-extensions/main/pi-preflight/docs/cover.png",
+    "extensions": [
+      "./src/index.ts"
+    ]
   },
   "files": [
     "src",
